@@ -1,0 +1,35 @@
+# Pihole Statistics collector docker-compose file. This tool harvests the available metrics from the pihole api
+# and sends them to an influxdb.
+#
+# docker-compose up -d
+#
+# Restart the stack for core changes:
+#     docker-compose stop
+#     docker-compose rm -f
+#     docker-compose build
+#     docker-compose up -d
+#
+# Available variables:
+#    HOSTNAME = "pihole"
+#    PIHOLE_API = "http://192.168.2.20/admin/api.php"
+#    INFLUXDB_SERVER = "192.168.2.5"
+#    INFLUXDB_PORT = 8086
+#    INFLUXDB_USERNAME = "telegraf"
+#    INFLUXDB_PASSWORD = "telegraf"
+#    INFLUXDB_DATABASE = "telegraf"
+#    DELAY = 10
+#    VERIFY_SSL = False
+
+
+version: '3.2'
+
+services:
+
+  pihole_stats:
+    restart: always
+    build: .
+    environment:
+      PIHOLE_API: "http://192.168.2.20/admin/api.php"
+      INFLUXDB_DATABASE: "telegraf"
+      DELAY: 10
+      VERIFY_SSL: "True"
