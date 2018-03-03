@@ -31,5 +31,6 @@ services:
     environment:
       PIHOLE_API: "http://192.168.2.20/admin/api.php"
       INFLUXDB_DATABASE: "telegraf"
+      INFLUXDB_PORT: 8086
       DELAY: 10
       VERIFY_SSL: "True"
